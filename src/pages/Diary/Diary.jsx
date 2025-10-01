@@ -75,14 +75,7 @@ export default function Diary({
     const year = dd.getFullYear();
     return `${day}.${mon}.${year}`;
   };
-
-  const itemKcal = (p) => {
-    if (typeof p.kcal === "number") return p.kcal;
-    if (typeof p.kcalPer100 === "number" && typeof p.grams === "number") {
-      return Math.round((p.grams / 100) * p.kcalPer100);
-    }
-    return 0;
-  };
+ 
 
   const consumed = PrivateData.consumed;
   const left = PrivateData.left;
