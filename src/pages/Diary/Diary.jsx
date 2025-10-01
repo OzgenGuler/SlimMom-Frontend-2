@@ -264,7 +264,6 @@ export default function Diary({
         <div className={styles.FoodBox}>
           <h4>Food not recommended</h4>
           <ul className={styles.FoodBoxList}>
-            {console.log(PrivateData)}
             {PrivateData.notAllowedProducts.length > 0 &&
               PrivateData.notAllowedProducts.map((item, idx) => (
                 <li key={idx}>{item}</li>
