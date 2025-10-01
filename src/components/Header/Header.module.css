@@ -1,0 +1,266 @@
+.HeaderContainer {
+
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 80px;
+    padding-inline: 16px;
+    /* margin-bottom: 150px; */
+    width: 100%;
+    position: absolute;
+    z-index: 1005;
+    gap: 20px;
+}
+
+.HeaderContainer .Header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.HeaderContainer .Logo {
+    width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: end;
+    padding-inline-end: 20px;
+    /* border-inline-end: 2px solid #E0E0E0; */
+}
+
+.Logo .LogoTitle {
+    font-family: 'Verdana', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: #212121;
+    font-weight: 100;
+    letter-spacing: 3px;
+
+}
+
+.Logo .LogoTitle .LogoTitleSpan {
+    color: #FC842D;
+}
+
+
+
+.HeaderDivider {
+    display: flex;
+    justify-content: space-between;
+    align-self: end;
+
+    flex: 1;
+    height: max-content;
+
+    border-left: 2px solid #E0E0E0;
+    padding-left: 20px;
+}
+
+
+
+.NavList,
+.AuthList {
+    list-style: none;
+
+    display: flex;
+    align-items: end;
+    align-self: end;
+    gap: 24px;
+}
+
+
+.NavList .NavLink,
+.AuthList .AuthLink {
+    font-family: Verdana;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 4%;
+    text-transform: uppercase;
+    color: #9B9FAA;
+    text-decoration: none;
+}
+
+.AuthList .AuthHr {
+    border-left: 1px solid #E0E0E0;
+    height: 32px;
+}
+
+
+
+
+.NavList .NavLink:hover,
+.AuthList .AuthLink:hover {
+    color: #212121;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1279px) {
+    .HeaderContainer {
+        position: relative;
+        padding: 0;
+        border-bottom: 2px solid #E0E0E0;
+        /* margin-bottom: 100px; */
+        justify-content: space-between;
+    }
+
+    .HeaderContainer .Header {
+        padding: 30px 32px;
+    }
+
+    .HeaderContainer .Logo {
+        align-items: center;
+        gap: 10px;
+    }
+
+    .HeaderDivider {
+        border: none;
+        align-self: center;
+        justify-content: flex-end;
+
+    }
+
+    .BurgerMenu {
+        /* align-self: center; */
+        margin-left: 48px;
+        height: 90%;
+        align-content: end;
+    }
+
+
+    .HeaderModalMenu {
+        border-top: 2px solid #E0E0E0;
+        background-color: #264061;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 120px;
+        left: 0;
+        z-index: 1002;
+    }
+
+    .HeaderModalMenu .ModalMenuList {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        list-style: none;
+        margin: 100px auto;
+    }
+
+    .HeaderModalMenu .ModalMenuList .ModalMenuItem .ModalMenuLink {
+        font-family: Verdana;
+        font-weight: 700;
+        font-size: 24px;
+
+        line-height: 100%;
+        letter-spacing: 4%;
+        text-align: center;
+        text-transform: uppercase;
+        color: #9B9FAA;
+        text-decoration: none;
+    }
+}
+
+/* ! Mobile */
+@media (max-width: 768px) {
+    .HeaderContainer {
+        flex-direction: column;
+        padding: 0;
+        position: relative;
+    }
+
+    .HeaderContainer .Header {
+        padding: 20px;
+        border-bottom: 2px solid #E0E0E0;
+
+    }
+
+    .HeaderContainer .SubHeader {
+        padding: 20px;
+        background-color: #EFF1F3;
+
+        display: flex;
+        align-items: center;
+    }
+
+    .HeaderContainer .Logo {
+        width: max-content;
+        flex: 1;
+    }
+
+    .Logo .LogoTitle {
+        display: none;
+    }
+
+    .HeaderDivider {
+        flex: 2;
+        border: none;
+        align-self: center;
+        justify-content: flex-end;
+    }
+
+    .BurgerMenu {
+        flex: 1;
+        display: flex;
+        justify-content: end;
+        align-self: center;
+
+    }
+
+
+    .AuthNav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+
+
+    }
+
+    .AuthNav .AuthBtn {
+        font-size: 16px;
+        cursor: pointer
+    }
+
+    .AuthNav .AuthList .AuthLink {
+        font-size: 16px;
+        text-transform: uppercase;
+    }
+
+
+    .HeaderModalMenu {
+        border-top: 2px solid #E0E0E0;
+        background-color: #264061;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: 120px;
+        left: 0;
+        z-index: 1002;
+    }
+
+    .HeaderModalMenu .ModalMenuList {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        list-style: none;
+        margin: 100px auto;
+    }
+
+    .HeaderModalMenu .ModalMenuList .ModalMenuItem .ModalMenuLink {
+        font-family: Verdana;
+        font-weight: 700;
+        font-size: 18px;
+
+        line-height: 100%;
+        letter-spacing: 4%;
+        text-align: center;
+        text-transform: uppercase;
+        color: #9B9FAA;
+        text-decoration: none;
+    }
+}

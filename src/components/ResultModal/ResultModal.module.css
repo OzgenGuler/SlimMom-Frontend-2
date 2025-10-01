@@ -1,0 +1,193 @@
+/* .resultModalContainer {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.resultModalText {
+    width: 280px;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #212121;
+    margin: 40px 20px 42px 20px;
+}
+
+.resultModalKcal {
+    font-size: 48px;
+    color: #264061;
+    font-weight: 700;
+}
+
+.resultModalKcalSpan {
+    font-size: 26px;
+    color: #264061;
+    font-weight: 700;
+}
+
+.FoodContainer {
+    width: 280px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.FoodListTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #212121;
+}
+
+.FoodList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.FoodListItem {
+    margin-bottom: 16px;
+    font-family: Verdana;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 4%;
+    color: #9b9faa;
+}
+
+.ModalBtn {
+    width: 210px;
+    height: 43px;
+    margin-top: 40px;
+    background-color: #fc842d;
+    border-radius: 30px;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+} */
+
+
+
+.resultModalContainer {
+    width: 670px;
+    height: 574px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 64px 82px 82px 82px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.resultModalText {
+    width: 80%;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 140%;
+    letter-spacing: 0%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.resultModalKcal {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 100%;
+    letter-spacing: 4%;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #264061;
+}
+
+.resultModalKcal .resultModalKcalSpan {
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 4%;
+    text-align: center;
+}
+
+.FoodContainer {
+    border-top: 1px solid #E0E0E0;
+    padding-block: 12px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 70%;
+}
+
+.FoodContainer .FoodListTitle {
+    font-family: Verdana;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 4%;
+}
+
+.FoodContainer .FoodList {
+
+
+    height: 100px;
+    overflow-y: auto;
+    font-family: Verdana;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 4%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    list-style: decimal;
+    color: #9B9FAA;
+    padding-left: 50px;
+
+}
+
+.ModalBtn {
+    width: 210px;
+    height: 43px;
+    background: #FC842D;
+    border-radius: 30px;
+    border: none;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 4%;
+    cursor: pointer !important;
+}
+
+
+@media (max-width: 768px) {
+    .resultModalContainer {
+        position: absolute;
+        z-index: 100;
+        /* top: 42.5%; */
+        width: 100%;
+        height: 100%;
+        padding: 40px 20px 120px 20px;
+        justify-content: flex-start;
+        box-shadow: none;
+    }
+
+    .FoodContainer .FoodList {
+
+
+        height: 200px;
+    }
+}

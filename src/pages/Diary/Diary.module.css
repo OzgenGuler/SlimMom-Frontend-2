@@ -1,0 +1,690 @@
+/* MobilFırst*/
+.DiaryPage {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+/* Brand Bar */
+.DiaryBrandBar {
+    height: 56px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 10px;
+}
+
+.DiaryBrandLogo {
+    height: 45px;
+    width: auto;
+    display: block;
+}
+
+.DiaryHamburger {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    color: #111827;
+}
+
+.DiaryHamburgerIcon {
+    width: 22px;
+    height: 22px;
+}
+
+.DiaryHamburger:hover {
+    color: #374151;
+}
+
+.DiaryHamburger:active {
+    transform: scale(0.96);
+}
+
+/* Header Navbar */
+.DiaryHeader {
+    height: 48px;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0 8px;
+    justify-content: space-between;
+}
+
+.DiaryBackBtn {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+    width: 40px;
+}
+
+.DiaryNavDivider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.DiaryTitle {
+    font-weight: 700;
+    font-size: 15px;
+    color: #111827;
+}
+
+.DiaryExitBtn {
+    border: none;
+    background: transparent;
+    color: #6b7280;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding-left: 12px;
+    border-left: 1px solid #d1d5db;
+}
+
+.DiaryExitBtn:hover {
+    color: #374151;
+}
+
+/* Content */
+.DiaryContent {
+    background: #fff;
+    padding: 16px;
+}
+
+.DiaryContent h3 {
+    margin: 4px 0 12px;
+
+    font-weight: 800;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/*  List*/
+.DiaryList {
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.DiaryList::-webkit-scrollbar {
+    width: 6px;
+}
+
+.DiaryList::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.DiaryList::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+.DiaryItem {
+    font-size: 12px;
+    font-weight: 500;
+    display: grid;
+    grid-template-columns: 1fr 60px 60px 24px;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.DiaryItemName {
+    color: #111827;
+    font-size: 12px;
+}
+
+.DiaryItemGrams {
+    color: #6b7280;
+    text-align: right;
+    font-size: 12px;
+}
+
+.DiaryItemKcalBox {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+}
+
+.DiaryItemKcal {
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.DiaryItemKcalUnit {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-left: 4px;
+}
+
+.DiaryDeleteBtn {
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Floating Add Button*/
+.DiaryFabDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.DiaryFab {
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    border: none;
+    background: #ff7a1a;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(255, 122, 26, 0.28);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    place-items: center;
+}
+
+/* Summary */
+.DiarySummary {
+    background: #f0f1f3;
+    padding: 20px;
+}
+
+/* Summary list */
+.SummaryList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.SummaryList li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.FoodBox ul {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.FoodBox ul li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.AddRow {
+    display: none;
+    gap: 12px;
+    margin: 12px 0 20px;
+    align-items: center;
+}
+
+.DiaryNavDividerHeader {
+    display: none;
+}
+
+.DiaryNavDividerHeaderSummary {
+    display: none;
+}
+
+/* Takvim ikon butonu */
+/* ---- Takvim ikon butonu (gri ikon) ---- */
+.CalendarIconBtn {
+    margin-left: 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    padding: 4px;
+}
+
+.CalendarIcon {
+    color: #6b7280;
+    transition: color 0.2s ease;
+}
+
+.CalendarIconBtn:hover .CalendarIcon {
+    color: #374151;
+}
+
+.react-datepicker-popper {
+    z-index: 10000;
+}
+
+
+.react-datepicker__input-container input {
+    display: none;
+}
+
+
+:root {
+    --dp-bg: #f5f6f7;
+    --dp-surface: #ffffff;
+    --dp-border: #e5e7eb;
+    --dp-text: #b2b2b2;
+    --dp-muted: #b9b8b8;
+    --dp-accent: #b0b0b0;
+    --dp-accent-strong: #fbfbfb;
+}
+
+.react-datepicker {
+    background: var(--dp-surface);
+    border: 1px solid var(--dp-border);
+    box-shadow: 0 8px 24px rgba(179, 176, 176, 0.08);
+    color: var(--dp-text);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.react-datepicker__header {
+    background: var(--dp-bg);
+    border-bottom: 1px solid var(--dp-border);
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+    color: var(--dp-text);
+    font-weight: 600;
+}
+
+.react-datepicker__day-name {
+    color: var(--dp-muted);
+}
+
+.react-datepicker__day {
+    color: var(--dp-text);
+    outline: none;
+}
+
+.react-datepicker__day:hover {
+    background: #eef1f4;
+    border-radius: 6px;
+}
+
+.react-datepicker__day--today {
+    border: 1px solid var(--dp-border);
+    border-radius: 6px;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__day--in-range,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--range-start,
+.react-datepicker__day--range-end {
+    background: var(--dp-accent);
+    color: #fff;
+    border-radius: 6px;
+}
+
+.react-datepicker__day--selected:hover,
+.react-datepicker__day--keyboard-selected:hover {
+    background: var(--dp-accent-strong);
+}
+
+.react-datepicker__day--disabled {
+    color: #c9cdd2;
+    cursor: not-allowed;
+}
+
+.react-datepicker__navigation-icon::before {
+    border-color: var(--dp-muted);
+}
+
+.react-datepicker__navigation:hover *::before {
+    border-color: var(--dp-text);
+}
+
+.react-datepicker__triangle {
+    display: none;
+}
+
+/*  Tablet ve üstü */
+@media (min-width: 768px) {
+    .AddRow {
+        display: grid;
+        grid-template-columns: 1fr 180px 48px;
+        gap: 12px;
+        margin: 12px 0 20px;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    .AddName,
+    .AddGrams {
+        height: 44px;
+        padding: 0 12px;
+        border: none;
+        border-bottom: 1px solid #d1d5db;
+        font-size: 14px;
+        background: #fff;
+    }
+
+    .AddGrams {
+        text-align: center;
+    }
+
+    .AddBtn {
+        width: 44px;
+        height: 44px;
+        border: none;
+        border-radius: 50%;
+        background: #ff6b08;
+        color: #fff;
+        font-size: 22px;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+    }
+
+    /* Tablet/desktop’ta FAB gizle */
+    .DiaryFabDiv {
+        display: none;
+    }
+
+    .DiarySummary {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+        margin-top: 30px;
+    }
+
+    .SummaryBox h4,
+    .FoodBox h4 {
+        margin-top: 0;
+    }
+
+    .FoodBox ul {
+        margin: 0;
+        padding-left: 18px;
+        color: #6b7280;
+    }
+
+    .DiaryBackBtn {
+        display: none;
+    }
+
+    .DiaryHeader {
+        display: none;
+    }
+
+    .DiaryBrandBar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .DiaryNavDividerHeader {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        margin-left: auto;
+        gap: 12px;
+    }
+
+    .DiaryNavDividerHeaderSummary {
+        display: none;
+    }
+
+    .DiaryHamburger {
+        order: 2;
+    }
+
+    .DiaryItemName {
+        font-size: 14px;
+    }
+
+    .DiaryContent {
+        margin-top: 30px;
+    }
+
+    .DiaryDate {
+        font-size: 32px;
+    }
+}
+
+/*  Desktop  */
+@media (min-width: 1024px) {
+    .DiaryPage {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        grid-template-rows: auto 1fr;
+        min-height: 100vh;
+        background: #fff;
+        align-items: first baseline;
+    }
+
+    /* Brand bar sadece solda */
+    .DiaryBrandBar {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+        height: 72px;
+        background: #fff;
+        border-bottom: 1px solid #eef2f6;
+    }
+
+    .DiaryContent {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        padding: 48px 56px 56px 56px;
+    }
+
+    /* --- SAĞ PANEL --- */
+    .DiarySummary {
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+        display: block;
+        background: #f6f8fb;
+        border-left: 1px solid #eef2f6;
+        height: 100vh;
+        padding: 40px 48px;
+        overflow: auto;
+        background-image: url("../assets/desktopDiary.png");
+        background-repeat: no-repeat;
+        background-position: right center;
+        background-size: auto 80%;
+        margin-top: 0;
+        align-items: center;
+    }
+
+    /* Sağ üst: Nic | Exit */
+    .DiaryNavDividerHeaderSummary {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+
+    .DiaryNavDividerHeaderSummary .DiaryTitle {
+        font-weight: 600;
+        color: #111827;
+    }
+
+    .DiaryNavDividerHeaderSummary .DiaryExitBtn {
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        color: #6b7280;
+        padding-left: 12px;
+        margin-left: 4px;
+        border-left: 1px solid #d1d5db;
+    }
+
+    .SummaryBox {
+        margin-top: 150px;
+    }
+
+    .SummaryBox h4 {
+        margin: 0 0 16px 0;
+        font-weight: 700;
+        color: #111827;
+    }
+
+    .SummaryList {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .SummaryList li {
+        padding: 10px 0;
+    }
+
+    .SummaryList li:last-child {
+        border-bottom: none;
+    }
+
+    .SummaryList li span:first-child {
+        display: block;
+        color: #9b9faa;
+        margin-bottom: 4px;
+    }
+
+    .SummaryList li span:last-child {
+        display: block;
+        color: #9b9faa;
+    }
+
+    /* Food not recommended */
+    .FoodBox {
+        margin-top: 32px;
+    }
+
+    .FoodBox h4 {
+        margin: 0 0 12px 0;
+        margin-bottom: 30px;
+    }
+
+    .FoodBox ul {
+        margin: 0;
+        padding-left: 0;
+        list-style: none;
+        color: #9ca3af;
+    }
+
+    .FoodBox li {
+        padding: 6px 0;
+    }
+
+    /* Liste ve ekleme satırı (sol taraf) */
+    .AddRow {
+        display: grid;
+        grid-template-columns: 1fr 220px 52px;
+        align-items: center;
+        gap: 24px;
+        margin: 16px 0 24px;
+    }
+
+    .AddName,
+    .AddGrams {
+        height: 48px;
+        font-size: 15px;
+        border: none;
+        border-bottom: 1px solid #e5e7eb;
+        background: transparent;
+        outline: none;
+    }
+
+    .AddBtn {
+        width: 48px;
+        height: 48px;
+        border: none;
+        border-radius: 50%;
+        background: #ff7a00;
+        color: #fff;
+        font-size: 24px;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+    }
+
+    .DiaryItem {
+        display: grid;
+        grid-template-columns: 1fr 80px 90px 24px;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 0;
+        border-bottom: 1px solid #edf2f7;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .DiaryItemName {
+        color: #111827;
+        font-size: 13px;
+    }
+
+    .DiaryItemGrams {
+        color: #6b7280;
+        text-align: right;
+    }
+
+    .DiaryItemKcalBox {
+        display: flex;
+        justify-content: flex-end;
+        align-items: baseline;
+        gap: 4px;
+    }
+
+    .DiaryItemKcal {
+        color: #6b7280;
+    }
+
+    .DiaryItemKcalUnit {
+        color: #9ca3af;
+        font-size: 12px;
+    }
+
+    .DiaryDeleteBtn {
+        background: transparent;
+        border: none;
+        color: #9ca3af;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    /* Mobil/ikincil headerları gizle */
+    .DiaryHeader,
+    .DiaryBackBtn,
+    .DiaryFabDiv,
+    .DiaryNavDividerHeader,
+    .DiaryHamburger {
+        display: none;
+    }
+}

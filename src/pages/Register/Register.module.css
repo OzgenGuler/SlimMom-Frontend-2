@@ -1,0 +1,336 @@
+:root {
+    --bg-card: #ffffff;
+    --line: #eaecef;
+    --text: #212121;
+    --label: #9b9faa;
+    --orange-500: #fc842d;
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.06);
+    --shadow-cta: 0 6px 14px rgba(255, 122, 26, 0.35);
+}
+
+/* MOBIL  */
+.registrationWrap {
+    width: 100%;
+    height: auto;
+    /* margin: 24px auto; */
+    padding: 40px 24px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    /* box-shadow: var(--shadow-card); */
+    overflow: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.registrationHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    align-items: center;
+    padding: 12px 14px;
+    border-bottom: 4px solid var(--line);
+}
+
+.registrationLogo img {
+    height: 28px;
+    width: auto;
+    display: block;
+}
+
+.logoImg {
+    height: 28px;
+    width: auto;
+    display: block;
+}
+
+.registrationTab {
+    background: transparent;
+    border: 0;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #a1a6ae;
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 100%;
+}
+
+.registrationActive {
+    color: var(--text);
+    position: relative;
+}
+
+.registrationForm {
+    display: grid;
+    padding: 18px 16px 22px;
+    gap: 14px;
+}
+
+.registrationTitle {
+    margin: 4px 0 6px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    color: var(--orange-500);
+    margin-bottom: 55px;
+}
+
+.registrationLabel {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--label);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.registrationInput {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--text);
+    background: transparent;
+    font-family: inherit;
+}
+
+.registrationInput:focus {
+    border-bottom: 2px solid var(--orange-500);
+}
+
+.registrationBtnAll {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 150px;
+}
+
+.registrationPrimaryBtn {
+    width: 182px;
+    height: 44px;
+    border: 0;
+    border-radius: 9999px;
+    background: var(--orange-500);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: var(--shadow-cta);
+    cursor: pointer;
+    transition: filter 0.2s ease, transform 0.06s ease;
+    font-family: inherit;
+}
+
+.registrationPrimaryBtn:hover {
+    filter: brightness(1.03);
+}
+
+.registrationPrimaryBtn:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(255, 122, 26, 0.28);
+}
+
+.registrationPrimaryBtn:disabled {
+    cursor: not-allowed;
+}
+
+.registrationOutlineBtn {
+    width: 180px;
+    height: 44px;
+    border-radius: 9999px;
+    background: transparent;
+    border: 1.5px solid var(--orange-500);
+    color: var(--orange-500);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    font-family: inherit;
+}
+
+.registrationOutlineBtn:hover {
+    background: rgba(255, 122, 26, 0.06);
+}
+
+.registrationOutlineBtn:active {
+    background: rgba(255, 122, 26, 0.1);
+    border-color: var(--orange-500);
+}
+
+/* TABLET 768px */
+@media (min-width: 768px) {
+    .registrationWrap {
+        width: 100%;
+        /* min-height: 100vh; */
+        margin: 0 auto;
+        border-radius: 0;
+        box-shadow: none;
+        /* background: var(--bg-card) url("../assets/tabletLogo.png") no-repeat right bottom; */
+        background: transparent;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .registrationHeader {
+        padding: 20px 32px;
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        border-bottom: none;
+    }
+
+    .registrationLogo img {
+        height: 32px;
+    }
+
+    .logoImg {
+        height: 32px;
+    }
+
+    .registrationHeaderTabs {
+        display: flex;
+        gap: 24px;
+    }
+
+    .registrationTab {
+        font-size: 16px;
+        padding: 0;
+        color: #9b9faa;
+    }
+
+    .registrationActive {
+        color: var(--text);
+    }
+
+    .registrationActive::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -10px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        opacity: 0.85;
+    }
+
+    .registrationForm {
+        width: 380px;
+        padding: 20px 32px 32px;
+    }
+
+    .registrationTitle {
+        font-size: 16px;
+        margin-bottom: 40px;
+        text-align: left;
+        margin-top: 176px;
+    }
+
+    .registrationBtnAll {
+        flex-direction: row;
+        gap: 20px;
+        justify-content: flex-start;
+        margin-top: 40px;
+        margin-bottom: 80px;
+    }
+
+    .registrationOutlineBtn {
+        background-color: #fff;
+    }
+}
+
+/* DESKTOP (1200px)  */
+@media (min-width: 1200px) {
+    .registrationWrap {
+        width: 100%;
+        max-width: none;
+        min-height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-around;
+        background-size: contain;
+        /* background: var(--bg-card) url("../assets/all.jpg") no-repeat right bottom; */
+    }
+
+    .registrationHeader {
+        display: flex;
+        justify-content: flex-start;
+        padding: 28px 48px;
+        border-bottom: none;
+    }
+
+    .registrationLogo img {
+        height: 40px;
+        width: auto;
+    }
+
+    .logoImg {
+        height: 40px;
+    }
+
+    .registrationHeaderTabs {
+        display: flex;
+        gap: 28px;
+        margin-top: 20px;
+    }
+
+    .registrationTab {
+        font-size: 15px;
+        padding: 0;
+        color: #9b9faa;
+    }
+
+    .registrationActive {
+        color: var(--text);
+    }
+
+    .registrationActive::after {
+        bottom: -12px;
+    }
+
+    .registrationForm {
+        width: 460px;
+        padding: 0 48px 64px;
+    }
+
+    .registrationTitle {
+        text-align: left;
+        font-size: 16px;
+        margin-top: 140px;
+        margin-bottom: 36px;
+        color: var(--orange-500);
+    }
+
+    .registrationLabel {
+        font-size: 14px;
+    }
+
+    .registrationInput {
+        font-size: 15px;
+        padding: 10px 0;
+    }
+
+    .registrationBtnAll {
+        flex-direction: row;
+        gap: 24px;
+        justify-content: flex-start;
+        margin-top: 28px;
+        margin-bottom: 120px;
+    }
+
+    .registrationPrimaryBtn,
+    .registrationOutlineBtn {
+        width: 182px;
+        height: 44px;
+    }
+
+    .registrationOutlineBtn {
+        background-color: #fff;
+    }
+}

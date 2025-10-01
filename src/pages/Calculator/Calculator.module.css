@@ -1,0 +1,467 @@
+/* ========================================
+   MOBILE (375px - 767px)
+   ======================================== */
+
+.contentWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+}
+
+/* Form Section */
+.formSection {
+    width: 100%;
+    padding: 32px 20px;
+    background-color: #FFFFFF;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #212121;
+    margin: 0 0 32px 0;
+}
+
+.form {
+    width: 100%;
+}
+
+.formGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+/* Input Fields */
+.inputField {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.inputField label,
+.radioField label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #9B9FAA;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+}
+
+.inputField input {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #212121;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #E0E0E0;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.inputField input:focus {
+    border-bottom-color: #FC842D;
+}
+
+.inputField input::placeholder {
+    color: #9B9FAA;
+    font-weight: 400;
+}
+
+/* Radio Field */
+.radioField {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.radioOptions {
+    display: flex;
+    gap: 24px;
+    margin-top: 8px;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.radioLabel input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: #FC842D;
+    cursor: pointer;
+}
+
+.radioLabel span {
+    font-size: 14px;
+    color: #9B9FAA;
+    font-weight: 400;
+    transition: all 0.2s ease;
+}
+
+.radioLabel input[type="radio"]:checked+span {
+    color: #FC842D;
+    font-weight: 700;
+}
+
+/* Submit Button */
+.submitButton {
+    display: block;
+    margin: 0 auto;
+    padding: 13px 32px;
+    min-width: 180px;
+    background-color: #FC842D;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.3);
+    transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+    background-color: #E5702A;
+    box-shadow: 0px 6px 15px rgba(252, 132, 45, 0.4);
+    transform: translateY(-1px);
+}
+
+.submitButton:active {
+    transform: translateY(0);
+}
+
+/* Summary Section - Mobile */
+.summaryMobile {
+    width: 100%;
+    background-color: #F5F5F5;
+    padding: 40px 20px;
+}
+
+.summaryContent {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.summaryLeft,
+.summaryRight {
+    width: 100%;
+}
+
+.summaryTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #212121;
+    letter-spacing: 0.04em;
+    margin: 0 0 20px 0;
+}
+
+.statsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.statsList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.statLabel {
+    color: #9B9FAA;
+    font-weight: 400;
+}
+
+.statValue {
+    color: #264061;
+    font-weight: 400;
+}
+
+.dietText {
+    font-size: 14px;
+    color: #9B9FAA;
+    font-weight: 400;
+    margin: 0;
+    height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+/* Desktop Summary - Hidden on Mobile */
+.summaryDesktop {
+    display: none;
+}
+
+/* ========================================
+     TABLET (768px - 1279px)
+     ======================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+    .contentWrapper {
+        padding: 0;
+    }
+
+    .formSection {
+        padding: 60px 32px 40px;
+    }
+
+    .title {
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 60px;
+    }
+
+    .formGrid {
+        display: grid;
+        grid-template-columns: 240px 240px;
+        grid-template-rows: auto auto auto;
+        gap: 32px;
+        margin-bottom: 60px;
+    }
+
+    /* Grid positioning for form elements */
+    .formGrid .inputField:nth-child(1) {
+        /* Height */
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .formGrid .inputField:nth-child(2) {
+        /* Age */
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .formGrid .inputField:nth-child(3) {
+        /* Current weight */
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .formGrid .inputField:nth-child(4) {
+        /* Desired weight */
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .formGrid .radioField {
+        /* Blood type */
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .inputField label,
+    .radioField label {
+        margin-bottom: 20px;
+    }
+
+    .inputField input {
+        padding: 4px 0 20px;
+    }
+
+    .submitButton {
+        margin: 0;
+        width: 210px;
+    }
+
+    /* Summary Section - Tablet */
+    .summaryMobile {
+        padding: 40px 32px 100px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .summaryContent {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .summaryLeft,
+    .summaryRight {
+        width: 100%;
+    }
+
+    /* Background decoration for tablet */
+    .summaryMobile::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 50%;
+        height: 60%;
+        background-image: url("../assets/tabletmain.png");
+        background-repeat: no-repeat;
+        background-position: bottom right;
+        background-size: contain;
+        z-index: 1;
+        pointer-events: none;
+    }
+}
+
+/* ========================================
+     DESKTOP (1280px ve üstü)
+     ======================================== */
+
+@media screen and (min-width: 1280px) {
+    .contentWrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: first;
+        /* padding: 140px 20px 40px; */
+        /* max-width: 1280px; */
+        /* margin: 0 auto; */
+        height: 100vh;
+        width: 100%;
+
+        /* background-color: #FFFFFF; */
+    }
+
+    .formSection {
+        flex: 4;
+        /* max-width: 640px; */
+        padding-inline-start: 30px;
+        align-content: space-around;
+    }
+
+    .title {
+        font-size: 34px;
+        margin-bottom: 60px;
+    }
+
+    .formGrid {
+        display: grid;
+        grid-template-columns: 240px 240px;
+        grid-template-rows: auto auto auto;
+        gap: 32px;
+        margin-bottom: 60px;
+    }
+
+    /* Grid positioning same as tablet */
+    .formGrid .inputField:nth-child(1) {
+        /* Height */
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .formGrid .inputField:nth-child(2) {
+        /* Age */
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .formGrid .inputField:nth-child(3) {
+        /* Current weight */
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .formGrid .inputField:nth-child(4) {
+        /* Desired weight */
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .formGrid .radioField {
+        /* Blood type */
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .inputField label,
+    .radioField label {
+        margin-bottom: 20px;
+    }
+
+    .inputField input {
+        padding: 4px 0 20px;
+    }
+
+    .submitButton {
+        margin: 0;
+        width: 210px;
+    }
+
+    /* Hide mobile summary */
+    .summaryMobile {
+        display: none;
+    }
+
+    /* Show desktop summary */
+    .summaryDesktop {
+        flex: 1;
+        display: block;
+        flex-shrink: 0;
+        /* width: 288px; */
+        padding: 40px 24px;
+        background-color: #F5F5F5;
+        /* height: fit-content; */
+        /* margin-left: 100px; */
+        height: 100%;
+        align-content: space-around;
+
+    }
+
+    .summaryDesktop>div {
+        margin-block: 150px;
+    }
+
+    .summaryDesktop .summaryTitle {
+        font-size: 14px;
+        font-weight: 700;
+        color: #212121;
+        letter-spacing: 0.04em;
+        margin-bottom: 20px;
+    }
+
+    .summaryDesktop .statsList {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 40px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .summaryDesktop .statsList li {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+
+    .summaryDesktop .statsList li .statLabel {
+        color: #9B9FAA;
+        font-weight: 400;
+    }
+
+    .summaryDesktop .statsList li .statValue {
+        color: #264061;
+        font-weight: 400;
+    }
+
+    .summaryDesktop .dietText {
+        font-size: 14px;
+        color: #9B9FAA;
+        font-weight: 400;
+        margin: 0;
+    }
+}
