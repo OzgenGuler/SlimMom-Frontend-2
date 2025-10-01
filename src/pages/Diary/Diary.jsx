@@ -9,12 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  getSelectedDateDiary,
-  getTodayDiary,
-} from "../../redux/userDiary/operations.js";
+import { getSelectedDateDiary } from "../../redux/userDiary/operations.js";
 export default function Diary({
-  products = [],
   date = new Date(),
 
   onAddClick,
@@ -200,14 +196,12 @@ export default function Diary({
         </Formik>
 
         <ul className={styles.DiaryList}>
-          {products.map((p, i) => (
+          {PrivateData.eatenFoods.map((p, i) => (
             <li className={styles.DiaryItem} key={`${p.name}-${i}`}>
               <span className={styles.DiaryItemName}>{p.name}</span>
-              <span className={styles.DiaryItemGrams}>
-                {typeof p.grams === "number" ? p.grams : "--"} g
-              </span>
+              <span className={styles.DiaryItemGrams}>{p.weight} g</span>
               <div className={styles.DiaryItemKcalBox}>
-                <span className={styles.DiaryItemKcal}>{itemKcal(p)}</span>
+                <span className={styles.DiaryItemKcal}>{p.calories}</span>
                 <span className={styles.DiaryItemKcalUnit}>kcal</span>
               </div>
               <button
