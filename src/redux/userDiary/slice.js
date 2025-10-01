@@ -13,16 +13,16 @@ const initialState = {
     dailyRate: 0,
     nOfNormal: 0,
     notAllowedProducts: [],
-    eatenProducts: [],
+    eatenFoods: [],
   },
-  selectedDate: null,
+  selectedDate: new Date().toISOString().split("T")[0].toString(),
   selectedDate_Data: {
     left: 0,
     consumed: 0,
     dailyRate: 0,
     nOfNormal: 0,
     notAllowedProducts: [],
-    eatenProducts: [],
+    eatenFoods: [],
   },
 };
 
@@ -49,6 +49,18 @@ const userDiarySlice = createSlice({
     builder.addCase(getSelectedDateDiary.fulfilled, (state, action) => {
       state.selectedDate = action.payload.date;
       state.selectedDate_Data = action.payload.data;
+    });
+    builder.addCase(getSelectedDateDiary.rejected, (state, action) => {
+      console.log("Error fetching selected date's diary:", action.payload);
+      state.selectedDate = action.payload.date;
+      state.selectedDate_Data = {
+        left: 0,
+        consumed: 0,
+        dailyRate: 0,
+        nOfNormal: 0,
+        notAllowedProducts: [],
+        eatenFoods: [],
+      };
     });
     builder.addCase(calculator.fulfilled, (state) => {
       state.modalView = true;

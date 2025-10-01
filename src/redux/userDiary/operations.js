@@ -38,18 +38,17 @@ export const getSelectedDateDiary = createAsyncThunk(
       } else {
         const response = await api.get(`calorie/private/${formattedDate}/all`);
         if (response.status === 200) {
-          return { date: selectedDate, data: response.data.data };
+          return { date: formattedDate, data: response.data.data };
         } else {
           toast.error("Failed to fetch selected date's diary");
-          return thunkAPI.rejectWithValue(
-            "Failed to fetch selected date's diary"
-          );
+         
         }
       }
     } catch (error) {
+      const formattedDate = selectedDate.toISOString().split("T")[0];
       toast.warning("Failed to fetch selected date's diary");
       console.error("Error fetching selected date's diary:", error);
-      return thunkAPI.rejectWithValue(error.message);
+       return thunkAPI.rejectWithValue({ date: formattedDate });
     }
   }
 );

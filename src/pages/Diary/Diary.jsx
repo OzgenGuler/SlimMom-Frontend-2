@@ -9,7 +9,10 @@ import "react-toastify/dist/ReactToastify.css";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getSelectedDateDiary } from "../../redux/userDiary/operations.js";
+import {
+  addProduct,
+  getSelectedDateDiary,
+} from "../../redux/userDiary/operations.js";
 export default function Diary({
   date = new Date(),
 
@@ -22,20 +25,22 @@ export default function Diary({
   const [productList] = useState([]);
   const [localDate, setLocalDate] = useState(date);
 
-  const { selectedDate_Data: PrivateData } = useSelector(
-    (state) => state.userDiary
-  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSelectedDateDiary(localDate));
   }, [localDate, dispatch]);
 
+  const { selectedDate, selectedDate_Data: PrivateData } = useSelector(
+    (state) => state.userDiary
+  );
   const currentDate = onDateChange ? new Date() : localDate;
 
   const handleDatePick = (d) => {
     if (!d) return;
-    if (typeof onDateChange === "function") onDateChange(d);
-    else setLocalDate(d);
+    if (typeof onDateChange === "function") {
+      dispatch(getSelectedDateDiary(d));
+      onDateChange(d);
+    } else setLocalDate(d);
   };
 
   // Takvim ikon butonu
@@ -75,7 +80,6 @@ export default function Diary({
     const year = dd.getFullYear();
     return `${day}.${mon}.${year}`;
   };
- 
 
   const consumed = PrivateData.consumed;
   const left = PrivateData.left;
@@ -132,7 +136,9 @@ export default function Diary({
                 ? vals.grams
                 : parseFloat(String(vals.grams).replace(",", "."));
             onAdd?.({ name: vals.name.trim(), grams: gramsNumber });
-
+            dispatch(
+              addProduct({ name: vals.name.trim(), weight: gramsNumber })
+            );
             resetForm();
           }}
           validateOnBlur
@@ -153,6 +159,9 @@ export default function Diary({
                 toast.error(messages.join(" • "));
                 return;
               }
+              dispatch(
+                addProduct({ name: values.name.trim(), weight: values.grams })
+              );
               await submitForm();
               toast.success("Added ✔");
             };
@@ -189,24 +198,28 @@ export default function Diary({
         </Formik>
 
         <ul className={styles.DiaryList}>
-          {PrivateData.eatenFoods.map((p, i) => (
-            <li className={styles.DiaryItem} key={`${p.name}-${i}`}>
-              <span className={styles.DiaryItemName}>{p.name}</span>
-              <span className={styles.DiaryItemGrams}>{p.weight} g</span>
-              <div className={styles.DiaryItemKcalBox}>
-                <span className={styles.DiaryItemKcal}>{p.calories}</span>
-                <span className={styles.DiaryItemKcalUnit}>kcal</span>
-              </div>
-              <button
-                type="button"
-                className={styles.DiaryDeleteBtn}
-                aria-label={`Delete ${p.name}`}
-                onClick={() => onDelete?.(i)}
-              >
-                ×
-              </button>
-            </li>
-          ))}
+          {PrivateData.eatenFoods.length > 0 ? (
+            PrivateData.eatenFoods.map((p, i) => (
+              <li className={styles.DiaryItem} key={`${p.name}-${i}`}>
+                <span className={styles.DiaryItemName}>{p.name}</span>
+                <span className={styles.DiaryItemGrams}>{p.weight} g</span>
+                <div className={styles.DiaryItemKcalBox}>
+                  <span className={styles.DiaryItemKcal}>{p.calories}</span>
+                  <span className={styles.DiaryItemKcalUnit}>kcal</span>
+                </div>
+                <button
+                  type="button"
+                  className={styles.DiaryDeleteBtn}
+                  aria-label={`Delete ${p.name}`}
+                  onClick={() => onDelete?.(i)}
+                >
+                  ×
+                </button>
+              </li>
+            ))
+          ) : (
+            <li className={styles.DiaryItem}>No items</li>
+          )}
         </ul>
       </div>
 
@@ -226,7 +239,7 @@ export default function Diary({
       <div className={styles.DiarySummary}>
         {/* SOL sütun */}
         <div className={styles.SummaryBox}>
-          <h4>Summary for {fmtDate(currentDate)}</h4>
+          <h4>Summary for {fmtDate(selectedDate)}</h4>
           <ul className={styles.SummaryList}>
             <li>
               <span>Left</span>

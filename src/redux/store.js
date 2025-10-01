@@ -14,14 +14,24 @@ const authPersistConfig = {
   whitelist: ["token"],
 };
 
+const userDiaryPersistConfig = {
+  key: "userDiary",
+  storage,
+  whitelist: ["selectedDate"],
+};
+
 const authPersisteredReducer = persistReducer(authPersistConfig, authRecuder);
+const userDiaryPersisteredReducer = persistReducer(
+  userDiaryPersistConfig,
+  userDiaryReducer
+);
 
 export const store = configureStore({
   reducer: {
     auth: authPersisteredReducer,
     publicCalculator: publicCalculatorReducer,
     products: productsReducer,
-    userDiary: userDiaryReducer,
+    userDiary: userDiaryPersisteredReducer,
   },
 });
 
