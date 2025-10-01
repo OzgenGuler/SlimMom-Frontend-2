@@ -9,12 +9,14 @@ import "react-toastify/dist/ReactToastify.css";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getProducts } from "../../redux/products/operations.js";
-
+import {
+  getSelectedDateDiary,
+  getTodayDiary,
+} from "../../redux/userDiary/operations.js";
 export default function Diary({
   products = [],
   date = new Date(),
-  dailyRate = 2800,
+
   onAddClick,
   onAdd,
   onDelete,
@@ -23,9 +25,14 @@ export default function Diary({
   // Tarih (controlled/uncontrolled destekli)
   const [productList] = useState([]);
   const [localDate, setLocalDate] = useState(date);
+
+  const { selectedDate_Data: PrivateData } = useSelector(
+    (state) => state.userDiary
+  );
+  const dispatch = useDispatch();
   useEffect(() => {
-    setLocalDate(date);
-  }, [date]);
+    dispatch(getSelectedDateDiary(localDate));
+  }, [localDate, dispatch]);
 
   const currentDate = onDateChange ? new Date() : localDate;
 
@@ -81,9 +88,10 @@ export default function Diary({
     return 0;
   };
 
-  const consumed = products.reduce((sum, p) => sum + itemKcal(p), 0);
-  const left = Math.max(dailyRate - consumed, 0);
-  const percent = dailyRate > 0 ? Math.round((consumed / dailyRate) * 100) : 0;
+  const consumed = PrivateData.consumed;
+  const left = PrivateData.left;
+  const percent = PrivateData.nOfNormal;
+  const dailyRate = PrivateData.dailyRate;
 
   const AddSchema = Yup.object({
     name: Yup.string()
@@ -255,11 +263,12 @@ export default function Diary({
         {/* SAĞ sütun */}
         <div className={styles.FoodBox}>
           <h4>Food not recommended</h4>
-          <ul>
-            <li>Flour products</li>
-            <li>Milk</li>
-            <li>Read meat</li>
-            <li>Smoked meats</li>
+          <ul className={styles.FoodBoxList}>
+            {console.log(PrivateData)}
+            {PrivateData.notAllowedProducts.length > 0 &&
+              PrivateData.notAllowedProducts.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
           </ul>
         </div>
       </div>

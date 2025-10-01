@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { calculator, getTodayDiary } from "./operations.js";
+import {
+  calculator,
+  getSelectedDateDiary,
+  getTodayDiary,
+} from "./operations.js";
 
 const initialState = {
   modalView: false,
@@ -39,6 +43,10 @@ const userDiarySlice = createSlice({
     });
     builder.addCase(getTodayDiary.fulfilled, (state, action) => {
       state.data = action.payload.data;
+      state.selectedDate = action.payload.date;
+      state.selectedDate_Data = action.payload.data;
+    });
+    builder.addCase(getSelectedDateDiary.fulfilled, (state, action) => {
       state.selectedDate = action.payload.date;
       state.selectedDate_Data = action.payload.data;
     });

@@ -27,14 +27,24 @@ export const getSelectedDateDiary = createAsyncThunk(
   "userDiary/getSelectedDateDiary",
   async (selectedDate, thunkAPI) => {
     try {
-      const response = await api.get(`calorie/private/${selectedDate}/all`);
-      if (response.status === 200) {
-        return { date: selectedDate, data: response.data.data };
+      console.log(
+        "Fetching diary for selected date:",
+        selectedDate.toISOString().split("T")[0]
+      );
+      const formattedDate = selectedDate.toISOString().split("T")[0];
+      const currentState = thunkAPI.getState().selectedDate;
+      if (currentState === formattedDate) {
+        return thunkAPI.dispatch(getTodayDiary());
       } else {
-        toast.error("Failed to fetch selected date's diary");
-        return thunkAPI.rejectWithValue(
-          "Failed to fetch selected date's diary"
-        );
+        const response = await api.get(`calorie/private/${formattedDate}/all`);
+        if (response.status === 200) {
+          return { date: selectedDate, data: response.data.data };
+        } else {
+          toast.error("Failed to fetch selected date's diary");
+          return thunkAPI.rejectWithValue(
+            "Failed to fetch selected date's diary"
+          );
+        }
       }
     } catch (error) {
       toast.warning("Failed to fetch selected date's diary");
@@ -62,6 +72,31 @@ export const calculator = createAsyncThunk(
     } catch (error) {
       toast.warning("Failed to submit calculator data");
       console.error("Error submitting calculator data:", error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addProduct = createAsyncThunk(
+  "userDiary/addProduct",
+  async ({ name, weight }, thunkAPI) => {
+    try {
+      const sDate = thunkAPI.getState().userDiary.selectedDate;
+      const response = await api.post("/calorie/private/" + sDate + "/add", {
+        name,
+        weight,
+      });
+      if (response.status === 201) {
+        toast.success("Product added successfully");
+        thunkAPI.dispatch(getSelectedDateDiary(sDate));
+        return response.data.data;
+      } else {
+        toast.error("Failed to add product");
+        return thunkAPI.rejectWithValue("Failed to add product");
+      }
+    } catch (error) {
+      toast.warning("Failed to add product");
+      console.error("Error adding product:", error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

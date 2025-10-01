@@ -3,7 +3,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-
+    font-size: 14px;
     font-family: Verdana, Geneva, sans-serif;
 }
 
@@ -232,6 +232,11 @@
 .FoodBox ul {
     padding-left: 0;
     margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 350px;
+    overflow-y: auto;
 }
 
 .FoodBox ul li {
