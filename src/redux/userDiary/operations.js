@@ -88,8 +88,7 @@ export const addProduct = createAsyncThunk(
       });
       if (response.status === 201) {
         toast.success("Product added successfully");
-        thunkAPI.dispatch(getSelectedDateDiary(sDate));
-        return response.data.data;
+        return thunkAPI.dispatch(getSelectedDateDiary(sDate));
       } else {
         toast.error("Failed to add product");
         return thunkAPI.rejectWithValue("Failed to add product");
