@@ -4,25 +4,23 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
   addProduct,
+  deleteProduct,
   getSelectedDateDiary,
 } from "../../redux/userDiary/operations.js";
-export default function Diary({
-  date = new Date(),
 
-  onAddClick,
-  onAdd,
-  onDelete,
-  onDateChange,
-}) {
+import { getProducts } from "../../redux/products/operations.js";
+
+export default function Diary({ date = new Date() }) {
+  const productsData = useSelector((state) => state.products.list);
   // Tarih (controlled/uncontrolled destekli)
-  const [productList] = useState([]);
+  const [productList, setProductList] = useState([]);
   const [localDate, setLocalDate] = useState(date);
 
   const dispatch = useDispatch();
@@ -30,16 +28,24 @@ export default function Diary({
     dispatch(getSelectedDateDiary(localDate));
   }, [localDate, dispatch]);
 
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setProductList(
+      productsData.map((p) => ({ label: p.title, value: p.title }))
+    );
+  }, [productsData]);
+
   const { selectedDate, selectedDate_Data: PrivateData } = useSelector(
     (state) => state.userDiary
   );
-  const currentDate = onDateChange ? new Date() : localDate;
 
   const handleDatePick = (d) => {
     if (!d) return;
     if (typeof onDateChange === "function") {
       dispatch(getSelectedDateDiary(d));
-      onDateChange(d);
     } else setLocalDate(d);
   };
 
@@ -91,17 +97,7 @@ export default function Diary({
       .trim()
       .min(2, "Please enter at least 2 characters.")
       .required("Please enter at least 2 characters."),
-    grams: Yup.number()
-      .transform((val, orig) => {
-        if (typeof orig === "string") {
-          const n = parseFloat(orig.replace(",", "."));
-          return Number.isNaN(n) ? val : n;
-        }
-        return val;
-      })
-      .typeError("Please enter a positive number.")
-      .positive("Please enter a positive number.")
-      .required("Please enter a positive number."),
+    weight: Yup.string().required("Please enter a weight."),
   });
 
   return (
@@ -113,9 +109,9 @@ export default function Diary({
       {/* Content */}
       <div className={styles.DiaryContent}>
         <h3 className={styles.DiaryDate}>
-          {fmtDate(currentDate)}
+          {fmtDate(localDate)}
           <DatePicker
-            selected={currentDate}
+            selected={localDate}
             onChange={handleDatePick}
             customInput={<CalendarIconBtn />}
             popperPlacement="bottom-start"
@@ -135,7 +131,6 @@ export default function Diary({
               typeof vals.grams === "number"
                 ? vals.grams
                 : parseFloat(String(vals.grams).replace(",", "."));
-            onAdd?.({ name: vals.name.trim(), grams: gramsNumber });
             dispatch(
               addProduct({ name: vals.name.trim(), weight: gramsNumber })
             );
@@ -152,18 +147,24 @@ export default function Diary({
             values,
           }) => {
             const handleAddClick = async () => {
-              const errs = await validateForm();
+              {
+                /* const errs = await validateForm();
               const keys = Object.keys(errs);
               if (keys.length) {
                 const messages = keys.map((k) => errs[k]);
                 toast.error(messages.join(" • "));
                 return;
+              } */
+              }
+              {
+                /* await submitForm(); */
               }
               dispatch(
-                addProduct({ name: values.name.trim(), weight: values.grams })
+                addProduct({
+                  name: values.name.trim(),
+                  weight: Number(values.weight),
+                })
               );
-              await submitForm();
-              toast.success("Added ✔");
             };
 
             return (
@@ -211,7 +212,7 @@ export default function Diary({
                   type="button"
                   className={styles.DiaryDeleteBtn}
                   aria-label={`Delete ${p.name}`}
-                  onClick={() => onDelete?.(i)}
+                  onClick={() => dispatch(deleteProduct(p.id))}
                 >
                   ×
                 </button>
@@ -225,12 +226,7 @@ export default function Diary({
 
       {/* MOBİL FAB */}
       <div className={styles.DiaryFabDiv}>
-        <button
-          type="button"
-          className={styles.DiaryFab}
-          aria-label="Add"
-          onClick={onAddClick}
-        >
+        <button type="button" className={styles.DiaryFab} aria-label="Add">
           +
         </button>
       </div>
@@ -239,7 +235,7 @@ export default function Diary({
       <div className={styles.DiarySummary}>
         {/* SOL sütun */}
         <div className={styles.SummaryBox}>
-          <h4>Summary for {fmtDate(selectedDate)}</h4>
+          <h4>Summary for {fmtDate(localDate)}</h4>
           <ul className={styles.SummaryList}>
             <li>
               <span>Left</span>

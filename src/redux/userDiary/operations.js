@@ -7,7 +7,11 @@ export const getTodayDiary = createAsyncThunk(
   "userDiary/getTodayDiary",
   async (_, thunkAPI) => {
     try {
-      const todayDate = new Date().toISOString().split("T")[0].toString();
+      const todayDate = new Date(new Date.getTime() + 3 * 60 * 60 * 1000)
+        .toISOString()
+        .split("T")[0]
+        .toString();
+      console.log("Fetching diary for today:", todayDate);
       const response = await api.get(`calorie/private/${todayDate}/all`);
       if (response.status === 200) {
         return { date: todayDate, data: response.data.data };
@@ -41,14 +45,13 @@ export const getSelectedDateDiary = createAsyncThunk(
           return { date: formattedDate, data: response.data.data };
         } else {
           toast.error("Failed to fetch selected date's diary");
-         
         }
       }
     } catch (error) {
       const formattedDate = selectedDate.toISOString().split("T")[0];
       toast.warning("Failed to fetch selected date's diary");
       console.error("Error fetching selected date's diary:", error);
-       return thunkAPI.rejectWithValue({ date: formattedDate });
+      return thunkAPI.rejectWithValue({ date: formattedDate });
     }
   }
 );
@@ -62,7 +65,6 @@ export const calculator = createAsyncThunk(
       });
       if (response.status === 201) {
         toast.success("Calculator data submitted successfully");
-        thunkAPI.dispatch(getTodayDiary());
         return response.data.data;
       } else {
         toast.error("Failed to submit calculator data");
@@ -87,7 +89,8 @@ export const addProduct = createAsyncThunk(
       });
       if (response.status === 201) {
         toast.success("Product added successfully");
-        return thunkAPI.dispatch(getSelectedDateDiary(sDate));
+        thunkAPI.dispatch(getSelectedDateDiary(sDate));
+        return response.data.data;
       } else {
         toast.error("Failed to add product");
         return thunkAPI.rejectWithValue("Failed to add product");
@@ -95,6 +98,30 @@ export const addProduct = createAsyncThunk(
     } catch (error) {
       toast.warning("Failed to add product");
       console.error("Error adding product:", error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  "userDiary/deleteProduct",
+  async (productId, thunkAPI) => {
+    try {
+      const sDate = thunkAPI.getState().userDiary.selectedDate;
+      const response = await api.delete(
+        `/calorie/private/${sDate}/delete/${productId}`
+      );
+      if (response.status === 204) {
+        toast.success("Product deleted successfully");
+        thunkAPI.dispatch(getSelectedDateDiary(sDate));
+        return productId;
+      } else {
+        toast.error("Failed to delete product");
+        return thunkAPI.rejectWithValue("Failed to delete product");
+      }
+    } catch (error) {
+      toast.warning("Failed to delete product");
+      console.error("Error deleting product:", error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

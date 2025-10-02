@@ -4,10 +4,9 @@ import {
   getSelectedDateDiary,
   getTodayDiary,
 } from "./operations.js";
-
 const initialState = {
   modalView: false,
-  data: {
+  calculator_data: {
     left: 0,
     consumed: 0,
     dailyRate: 0,
@@ -39,7 +38,10 @@ const userDiarySlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getTodayDiary.pending, (state) => {
-      state.selectedDate = new Date().toISOString().split("T")[0].toString();
+      state.selectedDate = new Date(new Date.getTime() + 3 * 60 * 60 * 1000)
+        .toISOString()
+        .split("T")[0]
+        .toString();
     });
     builder.addCase(getTodayDiary.fulfilled, (state, action) => {
       state.data = action.payload.data;
@@ -62,8 +64,10 @@ const userDiarySlice = createSlice({
         eatenFoods: [],
       };
     });
-    builder.addCase(calculator.fulfilled, (state) => {
+    builder.addCase(calculator.fulfilled, (state, action) => {
       state.modalView = true;
+
+      state.calculator_data = action.payload;
     });
   },
 });

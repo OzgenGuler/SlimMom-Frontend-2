@@ -10,7 +10,7 @@ const Calculator = () => {
   const {
     selectedDate,
     modalView,
-    data: PrivateData,
+    calculator_data: PrivateData,
   } = useSelector((state) => state.userDiary);
   const dispatch = useDispatch();
   useEffect(() => {
