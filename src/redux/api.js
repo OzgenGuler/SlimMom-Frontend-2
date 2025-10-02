@@ -1,7 +1,8 @@
 import axios from "axios";
 import { store } from "./store.js";
 export const api = axios.create({
-  baseURL: "https://slimmom-backend-o5ma.onrender.com/",
+  // baseURL: "https://slimmom-backend-o5ma.onrender.com/",
+  baseURL: "http://localhost:3000/",
 });
 // Request interceptor ekle
 api.interceptors.request.use(

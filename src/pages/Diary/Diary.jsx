@@ -45,6 +45,7 @@ export default function Diary({ date = new Date() }) {
   const handleDatePick = (d) => {
     if (!d) return;
     if (typeof onDateChange === "function") {
+      console.log(d);
       dispatch(getSelectedDateDiary(d));
     } else setLocalDate(d);
   };
@@ -164,7 +165,9 @@ export default function Diary({ date = new Date() }) {
                   name: values.name.trim(),
                   weight: Number(values.weight),
                 })
-              );
+              ).then(() => {
+                window.location.reload();
+              });
             };
 
             return (
@@ -212,7 +215,11 @@ export default function Diary({ date = new Date() }) {
                   type="button"
                   className={styles.DiaryDeleteBtn}
                   aria-label={`Delete ${p.name}`}
-                  onClick={() => dispatch(deleteProduct(p.id))}
+                  onClick={() =>
+                    dispatch(deleteProduct(p.id))
+                      .then(() => window.location.reload())
+                      .catch((err) => console.log(err))
+                  }
                 >
                   ×
                 </button>

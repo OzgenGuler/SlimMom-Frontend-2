@@ -49,6 +49,7 @@ const userDiarySlice = createSlice({
       state.selectedDate_Data = action.payload.data;
     });
     builder.addCase(getSelectedDateDiary.fulfilled, (state, action) => {
+      
       state.selectedDate = action.payload.date;
       state.selectedDate_Data = action.payload.data;
     });

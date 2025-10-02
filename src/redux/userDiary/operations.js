@@ -7,10 +7,7 @@ export const getTodayDiary = createAsyncThunk(
   "userDiary/getTodayDiary",
   async (_, thunkAPI) => {
     try {
-      const todayDate = new Date(new Date.getTime() + 3 * 60 * 60 * 1000)
-        .toISOString()
-        .split("T")[0]
-        .toString();
+      const todayDate = new Date().toISOString().split("T")[0].toString();
       console.log("Fetching diary for today:", todayDate);
       const response = await api.get(`calorie/private/${todayDate}/all`);
       if (response.status === 200) {
@@ -33,7 +30,7 @@ export const getSelectedDateDiary = createAsyncThunk(
     try {
       console.log(
         "Fetching diary for selected date:",
-        selectedDate.toISOString().split("T")[0]
+        selectedDate.toISOString().split("T")
       );
       const formattedDate = selectedDate.toISOString().split("T")[0];
       const currentState = thunkAPI.getState().selectedDate;
@@ -60,11 +57,12 @@ export const calculator = createAsyncThunk(
   "userDiary/calculator",
   async (formData, thunkAPI) => {
     try {
-      const response = await api.post("/calorie/private", {
+      const response = await api.post("calorie/private", {
         userData: formData,
       });
       if (response.status === 201) {
         toast.success("Calculator data submitted successfully");
+         
         return response.data.data;
       } else {
         toast.error("Failed to submit calculator data");
@@ -107,9 +105,10 @@ export const deleteProduct = createAsyncThunk(
   "userDiary/deleteProduct",
   async (productId, thunkAPI) => {
     try {
+      console.log("Deleting product with ID:", productId);
       const sDate = thunkAPI.getState().userDiary.selectedDate;
       const response = await api.delete(
-        `/calorie/private/${sDate}/delete/${productId}`
+        `calorie/private/${sDate}/remove/${productId}`
       );
       if (response.status === 204) {
         toast.success("Product deleted successfully");
