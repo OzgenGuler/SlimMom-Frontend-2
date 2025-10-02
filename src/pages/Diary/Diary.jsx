@@ -9,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 
+import GramCalc from "../../components/GramCalc/GramCalc";
+
 import {
   addProduct,
   deleteProduct,
@@ -18,6 +20,7 @@ import {
 import { getProducts } from "../../redux/products/operations.js";
 import { fmtDate } from "../../utils/fmtDate.js";
 export default function Diary({ date = new Date() }) {
+  const [mModalView, setmModalView] = useState(false);
   const productsData = useSelector((state) => state.products.list);
   // Tarih (controlled/uncontrolled destekli)
   const [productList, setProductList] = useState([]);
@@ -139,18 +142,6 @@ export default function Diary({ date = new Date() }) {
             values,
           }) => {
             const handleAddClick = async () => {
-              {
-                /* const errs = await validateForm();
-              const keys = Object.keys(errs);
-              if (keys.length) {
-                const messages = keys.map((k) => errs[k]);
-                toast.error(messages.join(" • "));
-                return;
-              } */
-              }
-              {
-                /* await submitForm(); */
-              }
               dispatch(
                 addProduct({
                   name: values.name.trim(),
@@ -224,7 +215,12 @@ export default function Diary({ date = new Date() }) {
 
       {/* MOBİL FAB */}
       <div className={styles.DiaryFabDiv}>
-        <button type="button" className={styles.DiaryFab} aria-label="Add">
+        <button
+          type="button"
+          className={styles.DiaryFab}
+          aria-label="Add"
+          onClick={() => setmModalView(true)}
+        >
           +
         </button>
       </div>
@@ -265,6 +261,7 @@ export default function Diary({ date = new Date() }) {
           </ul>
         </div>
       </div>
+      <GramCalc view={mModalView} />
     </div>
   );
 }
