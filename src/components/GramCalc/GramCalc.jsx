@@ -1,15 +1,29 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./GramCalc.module.css";
 
-import { useDispatch } from "react-redux";
-import { addProduct } from "../../redux/userDiary/operations";
+import Select from "react-select";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../../redux/userDiary/operations.js";
+import { getProducts } from "../../redux/products/operations.js";
 const GramCalc = ({ view }) => {
   const dispatch = useDispatch();
   const nameRef = useRef(null);
+
+  const productsData = useSelector((state) => state.products.list);
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+  const [productList, setProductList] = useState([]);
+  useEffect(() => {
+    setProductList(
+      productsData.map((p) => ({ label: p.title, value: p.title }))
+    );
+  }, [productsData]);
 
   useEffect(() => {
     nameRef.current?.focus();
@@ -20,7 +34,7 @@ const GramCalc = ({ view }) => {
       .trim()
       .min(2, "Please enter at least 2 characters.")
       .required("Please enter at least 2 characters."),
-    grams: Yup.number()
+    weight: Yup.number()
       .transform((val, orig) => {
         if (typeof orig === "string") {
           const n = parseFloat(orig.replace(",", "."));
@@ -39,11 +53,9 @@ const GramCalc = ({ view }) => {
       <ToastContainer position="bottom-right" autoClose={2500} />
       {/* Formik + Toastify */}
       <Formik
-        initialValues={{ name: "", grams: "" }}
+        initialValues={{ name: "", weight: "" }}
         validationSchema={Schema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-           
-
           setSubmitting(false);
           resetForm();
           nameRef.current?.focus();
@@ -54,7 +66,7 @@ const GramCalc = ({ view }) => {
       >
         {({
           validateForm,
-          
+
           values,
           setFieldValue,
         }) => {
@@ -71,18 +83,20 @@ const GramCalc = ({ view }) => {
                 name: values.name,
                 weight: values.weight,
               })
-            );
+            ).then(() => window.location.reload());
           };
 
           return (
             <Form className={styles.Form} noValidate>
               <label className={styles.Label} htmlFor="name"></label>
-              <Field
-                id="name"
+              <Select
+                options={productList}
                 name="name"
-                innerRef={nameRef}
-                placeholder="Enter product name"
-                className={styles.Input}
+                className={styles.AddName}
+                value={
+                  productList.find((opt) => opt.value === values.name) || null
+                }
+                onChange={(option) => setFieldValue("name", option.value)}
               />
 
               <label className={styles.Label} htmlFor="grams"></label>
@@ -94,7 +108,7 @@ const GramCalc = ({ view }) => {
                 className={styles.Input}
                 onChange={(e) => {
                   const v = e.target.value;
-                  setFieldValue("grams", v);
+                  setFieldValue("weight", v);
                 }}
               />
 
