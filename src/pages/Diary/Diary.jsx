@@ -38,7 +38,7 @@ export default function Diary({ date = new Date() }) {
     );
   }, [productsData]);
 
-  const { selectedDate, selectedDate_Data: PrivateData } = useSelector(
+  const { selectedDate_Data: PrivateData } = useSelector(
     (state) => state.userDiary
   );
 
@@ -142,8 +142,7 @@ export default function Diary({ date = new Date() }) {
         >
           {({
             setFieldValue,
-            validateForm,
-            submitForm,
+
             isSubmitting,
             values,
           }) => {

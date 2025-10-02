@@ -19,7 +19,11 @@ const Header = () => {
       <div className={styles.Header}>
         <div
           className={styles.Logo}
-          onClick={() => (window.location.href = "/")}
+          onClick={() =>
+            token
+              ? (window.location.href = "/diary")
+              : (window.location.href = "/")
+          }
         >
           <img src={logo} className={styles.LogoImg} about="SlimMom Logo" />
           <p className={styles.LogoTitle}>
@@ -61,7 +65,7 @@ const Header = () => {
             <>
               <ul className={styles.AuthList}>
                 <li className={styles.AuthItem}>
-                  <a href="/login" className={styles.AuthLink}>
+                  <a href="#" className={styles.AuthLink}>
                     Nic
                   </a>
                 </li>
