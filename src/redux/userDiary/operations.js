@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 export const getTodayDiary = createAsyncThunk(
   "userDiary/getTodayDiary",
   async (_, thunkAPI) => {
+    console.log("getTodayDiary called");
     try {
       const todayDate = new Date().toISOString().split("T")[0].toString();
       console.log("Fetching diary for today:", todayDate);
@@ -33,16 +34,12 @@ export const getSelectedDateDiary = createAsyncThunk(
         selectedDate.toISOString().split("T")
       );
       const formattedDate = selectedDate.toISOString().split("T")[0];
-      const currentState = thunkAPI.getState().selectedDate;
-      if (currentState === formattedDate) {
-        return thunkAPI.dispatch(getTodayDiary());
+
+      const response = await api.get(`calorie/private/${formattedDate}/all`);
+      if (response.status === 200) {
+        return { date: formattedDate, data: response.data.data };
       } else {
-        const response = await api.get(`calorie/private/${formattedDate}/all`);
-        if (response.status === 200) {
-          return { date: formattedDate, data: response.data.data };
-        } else {
-          toast.error("Failed to fetch selected date's diary");
-        }
+        toast.error("Failed to fetch selected date's diary");
       }
     } catch (error) {
       const formattedDate = selectedDate.toISOString().split("T")[0];
@@ -62,7 +59,7 @@ export const calculator = createAsyncThunk(
       });
       if (response.status === 201) {
         toast.success("Calculator data submitted successfully");
-         
+
         return response.data.data;
       } else {
         toast.error("Failed to submit calculator data");

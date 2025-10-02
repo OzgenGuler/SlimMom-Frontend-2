@@ -16,7 +16,7 @@ import {
 } from "../../redux/userDiary/operations.js";
 
 import { getProducts } from "../../redux/products/operations.js";
-
+import { fmtDate } from "../../utils/fmtDate.js";
 export default function Diary({ date = new Date() }) {
   const productsData = useSelector((state) => state.products.list);
   // Tarih (controlled/uncontrolled destekli)
@@ -79,14 +79,6 @@ export default function Diary({ date = new Date() }) {
       </button>
     );
   });
-
-  const fmtDate = (d) => {
-    const dd = new Date(d);
-    const day = String(dd.getDate()).padStart(2, "0");
-    const mon = String(dd.getMonth() + 1).padStart(2, "0");
-    const year = dd.getFullYear();
-    return `${day}.${mon}.${year}`;
-  };
 
   const consumed = PrivateData.consumed;
   const left = PrivateData.left;

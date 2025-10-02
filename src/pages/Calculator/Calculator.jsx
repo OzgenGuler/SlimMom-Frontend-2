@@ -4,18 +4,25 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getTodayDiary, calculator } from "../../redux/userDiary/operations.js";
+import {
+  getSelectedDateDiary,
+  calculator,
+} from "../../redux/userDiary/operations.js";
+
+import { fmtDate } from "../../utils/fmtDate.js";
+
 import ResultModal from "../../components/ResultModal/ResultModal.jsx";
 const Calculator = () => {
   const {
     selectedDate,
     modalView,
+    data: PrivateMainData,
     calculator_data: PrivateData,
   } = useSelector((state) => state.userDiary);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getTodayDiary());
-  }, [dispatch]);
+    dispatch(getSelectedDateDiary(selectedDate));
+  }, [dispatch, selectedDate]);
 
   const [formData, setFormData] = useState({
     height: "",
@@ -40,15 +47,26 @@ const Calculator = () => {
     // Form submit logic here
   };
 
-  const summaryData = {
-    date: selectedDate || new Date().toISOString().split("T")[0],
-    stats: [
-      { label: "Left", value: PrivateData.left + " kcal" },
-      { label: "Consumed", value: PrivateData.consumed + " kcal" },
-      { label: "Daily rate", value: PrivateData.dailyRate + " kcal" },
-      { label: "n% of normal", value: PrivateData.nOfNormal + "%" },
-    ],
-  };
+  const summaryData =
+    PrivateData.dailyRate !== 0
+      ? {
+          date: fmtDate(selectedDate) || new Date().toISOString().split("T")[0],
+          stats: [
+            { label: "Left", value: PrivateData.left + " kcal" },
+            { label: "Consumed", value: PrivateData.consumed + " kcal" },
+            { label: "Daily rate", value: PrivateData.dailyRate + " kcal" },
+            { label: "n% of normal", value: PrivateData.nOfNormal + "%" },
+          ],
+        }
+      : {
+          date: fmtDate(selectedDate) || new Date().toISOString().split("T")[0],
+          stats: [
+            { label: "Left", value: PrivateMainData.left + " kcal" },
+            { label: "Consumed", value: PrivateMainData.consumed + " kcal" },
+            { label: "Daily rate", value: PrivateMainData.dailyRate + " kcal" },
+            { label: "n% of normal", value: PrivateMainData.nOfNormal + "%" },
+          ],
+        };
 
   return (
     <div className={styles.contentWrapper}>

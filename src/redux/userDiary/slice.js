@@ -6,6 +6,14 @@ import {
 } from "./operations.js";
 const initialState = {
   modalView: false,
+  data: {
+    left: 0,
+    consumed: 0,
+    dailyRate: 0,
+    nOfNormal: 0,
+    notAllowedProducts: [],
+    eatenFoods: [],
+  },
   calculator_data: {
     left: 0,
     consumed: 0,
@@ -44,17 +52,15 @@ const userDiarySlice = createSlice({
         .toString();
     });
     builder.addCase(getTodayDiary.fulfilled, (state, action) => {
-      state.data = action.payload.data;
       state.selectedDate = action.payload.date;
       state.selectedDate_Data = action.payload.data;
+      state.data = action.payload.data;
     });
     builder.addCase(getSelectedDateDiary.fulfilled, (state, action) => {
-      
       state.selectedDate = action.payload.date;
       state.selectedDate_Data = action.payload.data;
     });
     builder.addCase(getSelectedDateDiary.rejected, (state, action) => {
-      console.log("Error fetching selected date's diary:", action.payload);
       state.selectedDate = action.payload.date;
       state.selectedDate_Data = {
         left: 0,
