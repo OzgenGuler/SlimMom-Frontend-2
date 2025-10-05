@@ -22,7 +22,7 @@ const Header = () => {
       dispatch(fetchUser());
     }
   }, [dispatch, token]);
-
+  console.clear();
   return (
     <div className={styles.HeaderContainer}>
       <div className={styles.Header}>

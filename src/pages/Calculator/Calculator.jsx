@@ -72,7 +72,7 @@ const Calculator = () => {
     <div className={styles.contentWrapper}>
       {/* Form Section */}
       <section className={styles.formSection}>
-        <ToastContainer position={"bottom-right"} autoClose={2500} />
+        <ToastContainer position={"top-center"} autoClose={2500} />
         <h1 className={styles.title}>
           Calculate your daily calorie intake right now
         </h1>
@@ -213,7 +213,12 @@ const Calculator = () => {
           </p>
         </div>
       </aside>
-      {modalView !== false && <ResultModal data={PrivateData} />}
+
+      {modalView !== false && (
+        <div className={styles.modalSpacer}>
+          <ResultModal data={PrivateData} />
+        </div>
+      )}
     </div>
   );
 };

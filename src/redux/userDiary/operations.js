@@ -18,8 +18,7 @@ export const getTodayDiary = createAsyncThunk(
         return thunkAPI.rejectWithValue("Failed to fetch today's diary");
       }
     } catch (error) {
-      toast.warning("Failed to fetch today's diary");
-      console.error("Error fetching today's diary:", error);
+      toast.warning("Bugünün günlüğü için hesaplama yapılamadı");
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -39,12 +38,13 @@ export const getSelectedDateDiary = createAsyncThunk(
       if (response.status === 200) {
         return { date: formattedDate, data: response.data.data };
       } else {
-        toast.error("Failed to fetch selected date's diary");
+        toast.error("Seçilen tarihin günlüğü getirilemedi");
+        return thunkAPI.rejectWithValue({ date: formattedDate });
       }
     } catch (error) {
       const formattedDate = selectedDate.toISOString().split("T")[0];
-      toast.warning("Failed to fetch selected date's diary");
-      console.error("Error fetching selected date's diary:", error);
+      toast.warning("Seçilen tarihin günlüğü hesaplanmadı.");
+      toast.warning("Lüften hesaplama yapınız.");
       return thunkAPI.rejectWithValue({ date: formattedDate });
     }
   }
