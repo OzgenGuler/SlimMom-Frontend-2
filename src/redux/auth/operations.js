@@ -50,3 +50,25 @@ export const registerUser = createAsyncThunk(
     }
   }
 );
+
+export const fetchUser = createAsyncThunk(
+  "auth/fetchUser",
+  async (_, thunkAPI) => {
+    console.log("Fetch User dispatched");
+    try {
+      const response = await api.get("auth/profile");
+      console.log("Fetch user response:", response);
+      if (response.status === 200) {
+        const username = response.data.message.split(" ")[2].split("@")[0];
+        console.log("User data fetched:", username);
+
+        return username;
+      } else {
+        return thunkAPI.rejectWithValue(response.data.message);
+      }
+    } catch (error) {
+      console.error("Fetch user error:", error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

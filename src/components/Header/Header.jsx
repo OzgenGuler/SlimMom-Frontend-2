@@ -5,15 +5,24 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import { IoReturnDownBack } from "react-icons/io5";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchUser } from "../../redux/auth/operations";
 
 const Header = () => {
-  const token = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch();
+  const { username, token } = useSelector((state) => state.auth);
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isTabletOrMobile = useMediaQuery({ maxWidth: 1279 });
   const [isMenuShow, setIsMenuShow] = useState(false);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchUser());
+    }
+  }, [dispatch, token]);
+
   return (
     <div className={styles.HeaderContainer}>
       <div className={styles.Header}>
@@ -66,7 +75,7 @@ const Header = () => {
               <ul className={styles.AuthList}>
                 <li className={styles.AuthItem}>
                   <a href="#" className={styles.AuthLink}>
-                    Nic
+                    {username && username}
                   </a>
                 </li>
                 <hr className={styles.AuthHr} />
@@ -106,7 +115,7 @@ const Header = () => {
             <ul className={styles.AuthList}>
               <li className={styles.AuthItem}>
                 <a href="#" className={styles.AuthLink}>
-                  Nic
+                  {username && username}
                 </a>
               </li>
               <hr className={styles.AuthHr} />
