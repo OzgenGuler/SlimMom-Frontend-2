@@ -45,7 +45,7 @@ export const getSelectedDateDiary = createAsyncThunk(
       const formattedDate = selectedDate.toISOString().split("T")[0];
       toast.warning("Seçilen tarihin günlüğü hesaplanmadı.");
       toast.warning("Lüften hesaplama yapınız.");
-      return thunkAPI.rejectWithValue({ date: formattedDate });
+      return thunkAPI.rejectWithValue({ date: formattedDate, error });
     }
   }
 );
