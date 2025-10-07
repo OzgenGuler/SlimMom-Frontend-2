@@ -1,3 +1,29 @@
+# Slim Mom 🥗
+
+Slim Mom, kullanıcıların yaş, boy, kilo, hedef kilo ve kan grubuna göre kişiselleştirilmiş bir diyet planı oluşturmasını sağlayan bir web uygulamasıdır.  
+Kullanıcı, günlük tükettiği yiyecekleri gramaj bazında girerek kalori hesaplaması yapabilir ve ideal formunu koruma sürecini takip edebilir.  
+Ayrıca uygulama, kan grubuna göre önerilmeyen besinleri filtreleyerek sağlıklı bir beslenme rutini oluşturmayı amaçlar.
+
+### 🔧 Özellikler
+- Kullanıcı kaydı ve profil yönetimi  
+- Günlük kalori hesaplama  
+- Kan grubuna göre yasaklı besin listesi  
+- Hedef kilo takibi ve ilerleme analizi  
+- Responsive tasarım (mobil uyumlu)
+
+### 🧠 Kullanılan Teknolojiler
+- **Frontend:** React, Redux, HTML, CSS  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB  
+- **Diğer:** JWT Authentication, REST API, Axios
+
+---
+
+📌 *Slim Mom: Stay fit, stay healthy — the smart way!*
+
+
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
