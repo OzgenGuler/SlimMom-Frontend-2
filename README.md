@@ -21,7 +21,7 @@ Ayrıca uygulama, kan grubuna göre önerilmeyen besinleri filtreleyerek sağlı
 
 📌 *Slim Mom: Stay fit, stay healthy — the smart way!*
 
-
+!!Proje kontrolü için render linkini açıp ardından canlı görünüm sayfasına geçiş yapabilirsiniz..
 
 
 # React + Vite
